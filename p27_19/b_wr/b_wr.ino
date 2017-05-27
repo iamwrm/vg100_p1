@@ -36,10 +36,15 @@ int m_t(unsigned int formerT, unsigned int laterT)
 void loop()
 {
     unsigned long t[10];
+
+    // 0 - 10
     t[0] = t0;
-    t[1] = t0 + 1000 * 3;
-    t[2] = t0 + 2000 * 3;
-    t[3] = t0 + 3000 * 3;
+    t[1] = t0 + 1000 * 10;
+
+    // 5 - 15
+    t[2] = t0 + 1000 * 5;
+    t[3] = t0 + 1000 * 15;
+
     t[4] = t0 + 4000 * 3;
 
     int i;
@@ -55,20 +60,24 @@ void loop()
         i = 100;
         analogWrite(9, i);
     }
+
     if (m_t(t[1], t[2]))
     {
         digitalWrite(LED_BUILTIN, LOW);
         // idle
     }
+
     if (m_t(t[2], t[3]))
     {
         digitalWrite(LED_BUILTIN, HIGH);
         i = 200;
         analogWrite(10, i);
     }
-    if (m_t(t[3], t[3] + 1000))
+
+    if (millis() > t[3] + 1000)
     {
-        // idle
-        // digitalWrite(LED_BUILTIN, HIGH); // turn the LED off by making the voltage LOW
+        // to stop
+        analogWrite(10, 0);
+        analogWrite(9, 0);
     }
 }
