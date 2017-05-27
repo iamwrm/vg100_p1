@@ -33,21 +33,22 @@ int m_t(unsigned int formerT, unsigned int laterT)
 // the loop function runs over and over again forever
 void loop()
 {
-    unsigned long time_1, time_2, time_3;
     unsigned long t[10];
-    t[1] = t0 + 1000;
-    t[2] = t0 + 2000;
-    t[3] = t0 + 3000;
+    t[1] = t0 + 1000 * 3;
+    t[2] = t0 + 2000 * 3;
+    t[3] = t0 + 3000 * 3;
+    t[4] = t0 + 4000 * 3;
+    int i;
     if (m_t(t[1], t[2]))
     {
-        int i;
+
         digitalWrite(7, LOW);
         digitalWrite(8, HIGH);
         digitalWrite(11, LOW);
         digitalWrite(12, HIGH);
         analogWrite(9, i);
     }
-    if (m_t(t[2], t[3]))
+    if (m_t(t[3], t[4]))
     {
         analogWrite(10, i);
     }
