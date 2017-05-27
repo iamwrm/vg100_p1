@@ -1,8 +1,12 @@
 unsigned long t0;
+
+unsigned long t1[50][2];
+unsigned long t2[50][2];
+
 void setup()
 {
     // initialize digital pin LED_BUILTIN as an output.
-
+    Serial.begin(9600);
     pinMode(LED_BUILTIN, OUTPUT);
 
     pinMode(7, OUTPUT);
@@ -19,19 +23,9 @@ void setup()
     digitalWrite(12, LOW);
 
     t0 = millis();
-}
-
-// the loop function runs over and over again forever
-void loop()
-{
-    digitalWrite(7, LOW);
-    digitalWrite(8, HIGH);
-    digitalWrite(11, LOW);
-    digitalWrite(12, HIGH);
 
     //---- before is just some setups ---------------
-    unsigned long t1[10][2];
-    unsigned long t2[10][2];
+
     // t1 is for moter 1
     t1[0][0] = t0; // time
     t1[0][1] = 0;  // velocity
@@ -46,7 +40,7 @@ void loop()
         t1[i][0] = t0 + 1000 * i;
         t1[i][1] = 200;
     }
-    for (int i = 6; i < 10; i++)
+    for (int i = 6; i < 50; i++)
     {
         t1[i][0] = t0 + 1000 * i;
         t1[i][1] = 0;
@@ -61,23 +55,37 @@ void loop()
     t2[2][1] = 150;
     t2[3][0] = t0 + 1000 * 6;
     t2[3][1] = 200;
-    for (int i = 4; i < 10; i++)
+    for (int i = 4; i < 50; i++)
     {
         t2[i][0] = t0 + 1000 * i;
         t2[i][1] = 100;
     }
-    //-----------------------
+}
+
+// the loop function runs over and over again forever
+void loop()
+{
+    digitalWrite(7, LOW);
+    digitalWrite(8, HIGH);
+    digitalWrite(11, LOW);
+    digitalWrite(12, HIGH);
+
+        //-----------------------
 
     // for moter 1
     int x = 0; // xiabiao
-    while (millis() < t1[x][0])
+    while (millis() > t1[x][0])
     {
         x++;
+        
+        Serial.println("x");
+        Serial.println(x);
     }
     analogWrite(9, t1[x][1]);
+    Serial.println(t1[x][1]);
     // for moter 2
     x = 0; // xiabiao
-    while (millis() < t2[x][0])
+    while (millis() > t2[x][0])
     {
         x++;
     }
