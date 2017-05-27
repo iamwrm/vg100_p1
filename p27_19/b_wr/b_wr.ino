@@ -32,6 +32,18 @@ int m_t(unsigned int formerT, unsigned int laterT)
     }
 }
 
+void my_acce(int pin_name, int acce_time, int v_low, int v_high)
+{
+    unsigned long time_begin;
+    time_begin = millis();
+    while (millis() < time_begin)
+    {
+        unsigned long time_past;
+        time_past = millis() - time_begin;
+        analogWrite(pin_name, v_low + time_past / acce_time * (v_high - v_low));
+    }
+}
+
 // the loop function runs over and over again forever
 void loop()
 {
@@ -57,8 +69,15 @@ void loop()
         digitalWrite(8, HIGH);
         digitalWrite(11, LOW);
         digitalWrite(12, HIGH);
-        i = 100;
-        analogWrite(9, i);
+        my_acce(9, 1000, 0, 200);
+
+        while (millis() < t[0] + 1000)
+        {
+
+            analogWrite(9, 200);
+        }
+
+        my_acce(9, 1000, 200, 0);
     }
     if (millis() > t[1])
     {
@@ -66,18 +85,21 @@ void loop()
         analogWrite(9, 0);
     }
 
-
     if (m_t(t[2], t[3]))
     {
         digitalWrite(LED_BUILTIN, HIGH);
         i = 200;
-        analogWrite(10, i);
+        my_acce(10, 1000, 0, 200);
+        while (millis() < t[0] + 1000)
+        {
+            analogWrite(10, 200);
+        }
+        my_acce(10, 1000, 200, 0);
     }
 
-    if (millis() > t[3] )
+    if (millis() > t[3])
     {
         // to stop
         analogWrite(10, 0);
     }
 }
-
