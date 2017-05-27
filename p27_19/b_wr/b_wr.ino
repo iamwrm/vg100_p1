@@ -60,12 +60,12 @@ void loop()
         i = 100;
         analogWrite(9, i);
     }
-
-    if (m_t(t[1], t[2]))
+    if (millis() > t[1])
     {
-        digitalWrite(LED_BUILTIN, LOW);
-        // idle
+        // to stop
+        analogWrite(9, 0);
     }
+
 
     if (m_t(t[2], t[3]))
     {
@@ -74,10 +74,10 @@ void loop()
         analogWrite(10, i);
     }
 
-    if (millis() > t[3] + 1000)
+    if (millis() > t[3] )
     {
         // to stop
         analogWrite(10, 0);
-        analogWrite(9, 0);
     }
 }
+
