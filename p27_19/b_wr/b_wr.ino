@@ -71,7 +71,7 @@ void loop()
         digitalWrite(12, HIGH);
         my_acce(9, 1000, 0, 200);
 
-        while (millis() < t[0] + 1000)
+        while (millis() < t[0] + 9 * 1000)
         {
 
             analogWrite(9, 200);
@@ -90,7 +90,7 @@ void loop()
         digitalWrite(LED_BUILTIN, HIGH);
         i = 200;
         my_acce(10, 1000, 0, 200);
-        while (millis() < t[0] + 1000)
+        while (millis() < t[0] + 9 * 1000)
         {
             analogWrite(10, 200);
         }
