@@ -3,6 +3,8 @@ void setup()
 {
     // initialize digital pin LED_BUILTIN as an output.
 
+    pinMode(LED_BUILTIN, OUTPUT);
+
     pinMode(7, OUTPUT);
     pinMode(8, OUTPUT);
     pinMode(9, OUTPUT);
@@ -44,18 +46,24 @@ void loop()
 
     if (m_t(t[0], t[1]))
     {
+        digitalWrite(LED_BUILTIN, HIGH);
+
         digitalWrite(7, LOW);
         digitalWrite(8, HIGH);
         digitalWrite(11, LOW);
         digitalWrite(12, HIGH);
+        i = 100;
         analogWrite(9, i);
     }
     if (m_t(t[1], t[2]))
     {
+        digitalWrite(LED_BUILTIN, LOW);
         // idle
     }
     if (m_t(t[2], t[3]))
     {
+        digitalWrite(LED_BUILTIN, HIGH);
+        i = 200;
         analogWrite(10, i);
     }
     if (m_t(t[3], t[3] + 1000))
