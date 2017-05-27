@@ -41,6 +41,16 @@ void loop()
     t1[2, 1] = 150;
     t1[3, 0] = t0 + 1000 * 3;
     t1[3, 1] = 200;
+    for (int i = 4; i < 6; i++)
+    {
+        t1[i, 0] = t0 + 1000 * i;
+        t1[i, 1] = 200;
+    }
+    for (int i = 6; i < 10; i++)
+    {
+        t1[i, 0] = t0 + 1000 * i;
+        t1[i, 1] = 0;
+    }
 
     // t2 is for moter 2
     t2[0, 0] = t0; // time
@@ -51,11 +61,25 @@ void loop()
     t2[2, 1] = 150;
     t2[3, 0] = t0 + 1000 * 6;
     t2[3, 1] = 200;
+    for (int i = 4; i < 10; i++)
+    {
+        t2[i, 0] = t0 + 1000 * i;
+        t2[i, 1] = 100;
+    }
     //-----------------------
 
     // for moter 1
-
-
-
+    int x = 0; // xiabiao
+    while (millis() < t1[x, 0])
+    {
+        x++;
+    }
+    analogWrite(9, t1[x, 1]);
     // for moter 2
+    x = 0; // xiabiao
+    while (millis() < t2[x, 0])
+    {
+        x++;
+    }
+    analogWrite(10, t2[x, 1]);
 }
