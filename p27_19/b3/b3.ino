@@ -1,6 +1,9 @@
 unsigned long t0;
 
-int t[2][50][2];
+// total max time 30s 
+// frame 150 -> 1 s 5 frame 
+#define time_frame_max 150
+int t[2][time_frame_max][2];
 
 void setup()
 {
@@ -26,6 +29,7 @@ void setup()
     //---- before is just some setups ---------------
 
     // t[0] is for moter 1
+    // 30 s real time
     t[0][0][0] = 0; // time
     t[0][0][1] = 0; // velocity
     t[0][1][0] = 1000 * 1;
@@ -39,7 +43,7 @@ void setup()
         t[0][i][0] = 1000 * i;
         t[0][i][1] = 200;
     }
-    for (int i = 6; i < 50; i++)
+    for (int i = 6; i < time_frame_max; i++)
     {
         t[0][i][0] = 1000 * i;
         t[0][i][1] = 0;
@@ -54,7 +58,7 @@ void setup()
     t[1][2][1] = 150;
     t[1][3][0] = 1000 * 6;
     t[1][3][1] = 200;
-    for (int i = 4; i < 50; i++)
+    for (int i = 4; i < time_frame_max; i++)
     {
         t[1][i][0] = 1000 * i;
         t[1][i][1] = 100;
@@ -90,4 +94,12 @@ void loop()
     }
     analogWrite(10, t[1][x][1]);
 }
+
+
+
+
+
+
+
+
 
