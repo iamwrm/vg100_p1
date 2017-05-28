@@ -31,14 +31,14 @@ void setup()
 
     // t[0] is for moter 1
     // 30 s real time
-    for (short i = 0; i < time_frame_max; i++)
+    for (int i = 0; i < time_frame_max; i++)
     {
-        t[0][i][0] = time_frame_max * 1000 / 30;
+        t[0][i][0] = (double)(i)*1000 / 30;
         t[0][i][1] = 0;
     }
-    for (short i = 0; i < time_frame_max; i++)
+    for (int i = 0; i < time_frame_max; i++)
     {
-        t[1][i][0] = time_frame_max * 1000 / 30;
+        t[1][i][0] = (double)(i)*1000 / 30;
         t[1][i][1] = 0;
     }
 
@@ -77,19 +77,19 @@ void loop()
     int x = 0; // xiabiao
     while (millis() > t0 + (unsigned long)(t[0][x][0]))
     {
-        x++;
+        if (x < time_frame_max)
+            x++;
     }
     analogWrite(9, t[0][x][1]);
-
     //--------debug
-    Serial.println(t[0][x][1]);
+    Serial.println(x);
     //--------debug
-
     // for moter 2
     x = 0; // xiabiao
     while (millis() > t0 + (unsigned long)(t[1][x][0]))
     {
-        x++;
+        if (x < time_frame_max)
+            x++;
     }
     analogWrite(10, t[1][x][1]);
 
@@ -98,3 +98,4 @@ void loop()
         delay(1000 * 500);
     }
 }
+
