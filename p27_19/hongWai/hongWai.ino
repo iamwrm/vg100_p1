@@ -3,7 +3,20 @@ void setup()
     // initialize digital pin LED_BUILTIN as an output.
     Serial.begin(9600);
     pinMode(LED_BUILTIN, OUTPUT);
-    pinMode(7, INPUT);
+    pinMode(13, INPUT);
+
+    pinMode(7, OUTPUT);
+    pinMode(8, OUTPUT);
+    pinMode(9, OUTPUT);
+
+    pinMode(10, OUTPUT);
+    pinMode(11, OUTPUT);
+    pinMode(12, OUTPUT);
+
+    digitalWrite(7, LOW);
+    digitalWrite(8, LOW);
+    digitalWrite(11, LOW);
+    digitalWrite(12, LOW);
 
     //---- before is just some setups ---------------
 
@@ -15,8 +28,10 @@ void setup()
 // the loop function runs over and over again forever
 void loop()
 {
+    //  analogWrite(9,200 );
+    //  analogWrite(10,200 );
     int obstacle = 0;
-    obstacle = digitalRead(7);
+    obstacle = digitalRead(13);
     // have obstacle -> 0   on obstacle -> 1
     Serial.print(obstacle);
 
@@ -47,6 +62,6 @@ void loop()
     }
     if (gone_F)
     {
-        dlay(1000000);
+        delay(100000);
     }
 }
