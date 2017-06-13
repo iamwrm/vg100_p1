@@ -49,7 +49,10 @@ void loop()
         t0 = millis();
         while (millis() < t0 + 3 * 1000)
         {
-            analogWrite(dianJiPin, 100);
+            analogWrite(A1, 250);
+            analogWrite(A2, 0);
+            analogWrite(A3, 250);
+            analogWrite(A4, 0);
         }
         gone_F = 1;
         pulled_F = 0;
