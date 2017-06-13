@@ -19,7 +19,7 @@ void setup()
     pinMode(A3, OUTPUT);
     pinMode(A4, OUTPUT);
 
-    started_F = 0;
+    started_F = 1;
     pulled_F = 0;
     gone_F = 0;
     relieved_F = 0;
@@ -31,7 +31,7 @@ void loop()
     int obstacle = 0;
     obstacle = digitalRead(13);
     // have obstacle -> 0   no obstacle -> 1
-    Serial.print(obstacle);
+    //  Serial.print(obstacle);
 
     if (started_F)
     {
