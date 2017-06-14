@@ -39,32 +39,37 @@ void loop()
     //
     long T0;
     T0 = millis();
-    while (millis() < T0 + 7000)
+    int TotalTime = 5000;
+    while (millis() < T0 + TotalTime)
     {
         obstacle = digitalRead(HongWaiPinKou);
         myservo.write(93);
         // youbian
         int MaxSpeed1, MaxSpeed2;
         MaxSpeed1 = 199;
-        MaxSpeed2 = 200;
+        MaxSpeed2 = 197;
 
         double co1, co2;
         co1 = 1;
         if (millis() < T0 + 1500)
         {
             co1 = (double)(millis() - T0) / 1500.0;
+            co2 = (double)(millis() - T0) / 1700.0;
         }
-        if (millis() > T0 + 7000 - 1500)
+        if (millis() > T0 + TotalTime - 1500)
         {
-            co1 = (double)(T0 + 7000 - millis() ) / 1500.0;
+            co1 = (double)(T0 + TotalTime - millis() ) / 1500.0;
+            co2 = (double)(T0 + TotalTime - millis() ) / 1700.0;
         }
 
         Serial.print(((int)MaxSpeed1 * co1));
         Serial.print("\n");
+        // you
         analogWrite(5, ((int)MaxSpeed1 * co1));
         analogWrite(6, 0);
+        //zuo
         analogWrite(MyA1, 0);
-        analogWrite(MyA2, ((int)MaxSpeed2 * co1));
+        analogWrite(MyA2, ((int)MaxSpeed2 * co2));
         /*
         if (obstacle == 0)
         {
@@ -87,5 +92,6 @@ void loop()
     myservo.write(93);
     delay(10000);
 }
+
 
 
