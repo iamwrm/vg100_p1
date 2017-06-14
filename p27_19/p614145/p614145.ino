@@ -45,7 +45,22 @@ void loop()
         obstacle = digitalRead(HongWaiPinKou);
         myservo.write(93);
         // youbian
-        analogWrite(5, 199);
+        int MaxSpeed1, MaxSpeed2;
+        MaxSpeed1 = 199;
+        MaxSpeed2 = 200;
+
+        double co1, co2;
+        co1 = 1;
+        if (millis() < T0 + 1500)
+        {
+            co1 = (double)(millis() - T0) / 1500.0);
+        }
+        if (millis() > T0 + 7000 - 1500)
+        {
+            co1 = (double)(T0 + 7000 - millis() ) / 1500.0);
+        }
+
+        analogWrite(5, ((int)MaxSpeed1 * co1));
         analogWrite(6, 0);
         analogWrite(MyA1, 0);
         analogWrite(MyA2, 200);
