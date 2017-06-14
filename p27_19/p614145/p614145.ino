@@ -39,7 +39,7 @@ void loop()
     //
     long T0;
     T0 = millis();
-    int TotalTime = 5000;
+    int TotalTime = 3800;
     while (millis() < T0 + TotalTime)
     {
         obstacle = digitalRead(HongWaiPinKou);
@@ -48,29 +48,28 @@ void loop()
         int MaxSpeed1, MaxSpeed2;
         // you 1 // zuo 2
 
-
-        MaxSpeed1 = 199;
-        MaxSpeed2 = 194;
+        MaxSpeed1 = (int)(199.0 / 1.5);
+        MaxSpeed2 = (int)(194/1.5);
 
         double co1, co2;
         double acc_time;
-        acc_time = 1900.0;
+        acc_time = 1000.0;
         co1 = 1;
-        if (millis() < T0 + 1500)
+        if (millis() < T0 + 1000)
         {
-            co1 = (double)(millis() - T0) / 1500.0;
+            co1 = (double)(millis() - T0) / 1000.0;
         }
         if (millis() < T0 + (int)acc_time)
         {
             co2 = (double)(millis() - T0) / acc_time;
         }
-        if (millis() > T0 + TotalTime - 1500)
+        if (millis() > T0 + TotalTime - 1000)
         {
-            co1 = (double)(T0 + TotalTime - millis() ) / 1500.0;
+            co1 = (double)(T0 + TotalTime - millis()) / 1000.0;
         }
         if (millis() > T0 + TotalTime - (int)acc_time)
         {
-            co2 = (double)(T0 + TotalTime - millis() ) / acc_time;
+            co2 = (double)(T0 + TotalTime - millis()) / acc_time;
         }
 
         Serial.print(((int)MaxSpeed1 * co1));
