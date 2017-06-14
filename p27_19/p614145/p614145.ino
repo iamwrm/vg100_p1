@@ -10,7 +10,7 @@ int MyA1, MyA2;
 void setup()
 {
     // initialize digital pin LED_BUILTIN as an output.
-
+    Serial.begin(9600);
     myservo.attach(4);
 
     pinMode(5, OUTPUT);
@@ -29,7 +29,6 @@ void setup()
 void loop()
 {
     // have obstacle -> 0   no obstacle -> 1
-    Serial.print(obstacle);
 
     analogWrite(5, 0);
     analogWrite(6, 0);
@@ -53,17 +52,19 @@ void loop()
         co1 = 1;
         if (millis() < T0 + 1500)
         {
-            co1 = (double)(millis() - T0) / 1500.0);
+            co1 = (double)(millis() - T0) / 1500.0;
         }
         if (millis() > T0 + 7000 - 1500)
         {
-            co1 = (double)(T0 + 7000 - millis() ) / 1500.0);
+            co1 = (double)(T0 + 7000 - millis() ) / 1500.0;
         }
 
+        Serial.print(((int)MaxSpeed1 * co1));
+        Serial.print("\n");
         analogWrite(5, ((int)MaxSpeed1 * co1));
         analogWrite(6, 0);
         analogWrite(MyA1, 0);
-        analogWrite(MyA2, 200);
+        analogWrite(MyA2, ((int)MaxSpeed2 * co1));
         /*
         if (obstacle == 0)
         {
@@ -86,3 +87,5 @@ void loop()
     myservo.write(93);
     delay(10000);
 }
+
+
