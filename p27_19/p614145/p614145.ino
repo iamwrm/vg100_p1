@@ -46,18 +46,21 @@ void loop()
         myservo.write(93);
         // youbian
         int MaxSpeed1, MaxSpeed2;
+        // you 1 // zuo 2
+
+
         MaxSpeed1 = 199;
-        MaxSpeed2 = 197;
+        MaxSpeed2 = 194;
 
         double co1, co2;
         double acc_time;
-        acc_time = 1700.0;
+        acc_time = 1900.0;
         co1 = 1;
         if (millis() < T0 + 1500)
         {
             co1 = (double)(millis() - T0) / 1500.0;
         }
-        if (millis() < T0 + acc_time)
+        if (millis() < T0 + (int)acc_time)
         {
             co2 = (double)(millis() - T0) / acc_time;
         }
@@ -65,7 +68,7 @@ void loop()
         {
             co1 = (double)(T0 + TotalTime - millis() ) / 1500.0;
         }
-        if (millis() > T0 + TotalTime - acc_time)
+        if (millis() > T0 + TotalTime - (int)acc_time)
         {
             co2 = (double)(T0 + TotalTime - millis() ) / acc_time;
         }
@@ -100,6 +103,3 @@ void loop()
     myservo.write(93);
     delay(10000);
 }
-
-
-
