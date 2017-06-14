@@ -50,16 +50,24 @@ void loop()
         MaxSpeed2 = 197;
 
         double co1, co2;
+        double acc_time;
+        acc_time = 1700.0;
         co1 = 1;
         if (millis() < T0 + 1500)
         {
             co1 = (double)(millis() - T0) / 1500.0;
-            co2 = (double)(millis() - T0) / 1700.0;
+        }
+        if (millis() < T0 + acc_time)
+        {
+            co2 = (double)(millis() - T0) / acc_time;
         }
         if (millis() > T0 + TotalTime - 1500)
         {
             co1 = (double)(T0 + TotalTime - millis() ) / 1500.0;
-            co2 = (double)(T0 + TotalTime - millis() ) / 1700.0;
+        }
+        if (millis() > T0 + TotalTime - acc_time)
+        {
+            co2 = (double)(T0 + TotalTime - millis() ) / acc_time;
         }
 
         Serial.print(((int)MaxSpeed1 * co1));
