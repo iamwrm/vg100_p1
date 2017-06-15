@@ -36,15 +36,15 @@ void loop()
     analogWrite(MyA2, 0);
     myservo.write(180);
     int mydelay;
-    mydelay = 3000;
+    mydelay = 3200;
     delay(mydelay);
     //
     long T0;
     T0 = millis();
 
     double acc_time,dcc_time;
-    acc_time = 1000.0;
-    dcc_time = 1000.0;
+    acc_time = 1170.0;
+    dcc_time = 1170.0;
     int TotalTime = acc_time + dcc_time;
 
     while (millis() < T0 + TotalTime)
@@ -107,4 +107,8 @@ void loop()
     myservo.write(93);
     delay(10000);
 }
+
+
+
+
 
