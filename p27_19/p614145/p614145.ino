@@ -35,14 +35,18 @@ void loop()
     analogWrite(MyA1, 0);
     analogWrite(MyA2, 0);
     myservo.write(180);
-    delay(3000);
+    int mydelay;
+    mydelay = 3000;
+    delay(mydelay);
     //
     long T0;
     T0 = millis();
+
     double acc_time,dcc_time;
-    acc_time = 1500.0;
-    dcc_time = 1500.0;
+    acc_time = 1000.0;
+    dcc_time = 1000.0;
     int TotalTime = acc_time + dcc_time;
+
     while (millis() < T0 + TotalTime)
     {
         obstacle = digitalRead(HongWaiPinKou);
@@ -94,7 +98,7 @@ void loop()
     analogWrite(MyA1, 0);
     analogWrite(MyA2, 0);
     myservo.write(6);
-    delay(3000);
+    delay(mydelay-200);
 
     analogWrite(5, 0);
     analogWrite(6, 0);
@@ -103,3 +107,4 @@ void loop()
     myservo.write(93);
     delay(10000);
 }
+
